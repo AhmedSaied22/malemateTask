@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mealmate/app.dart';
 import 'package:mealmate/core/routes/routes_name.dart';
+import 'package:mealmate/features/home/presentation/views/home_view.dart';
 import 'package:mealmate/features/splash/presentation/views/splash_view.dart';
-
-import '../../../main.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,8 +11,8 @@ class RouteGenerator {
     switch (settings.name) {
       case RoutesName.splash:
         return _buildRoute(const SplashView(), RouteTransition.fade);
-      // case RoutesName.home:
-      //   return _buildRoute(const HomeView(), RouteTransition.fade);
+      case RoutesName.home:
+        return _buildRoute(const HomeView(), RouteTransition.fade);
       default:
         return _errorRoute();
     }
