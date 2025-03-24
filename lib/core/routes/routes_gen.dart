@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mealmate/app.dart';
 import 'package:mealmate/core/routes/routes_name.dart';
 import 'package:mealmate/features/home/presentation/views/home_view.dart';
+import 'package:mealmate/features/meals/presentation/views/add_meal_view.dart';
 import 'package:mealmate/features/splash/presentation/views/splash_view.dart';
 
 class RouteGenerator {
@@ -13,6 +14,8 @@ class RouteGenerator {
         return _buildRoute(const SplashView(), RouteTransition.fade);
       case RoutesName.home:
         return _buildRoute(const HomeView(), RouteTransition.fade);
+      case RoutesName.addMeal:
+        return _buildRoute(const AddMealView(), RouteTransition.fade);
       default:
         return _errorRoute();
     }

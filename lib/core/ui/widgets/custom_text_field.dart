@@ -20,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final bool isValidator;
   final Color? fillColor;
+  final Widget? icon;
   final TextStyle? labelStyle;
   final void Function(String)? onChanged;
   final void Function()? onTap;
@@ -58,11 +59,13 @@ class CustomTextField extends StatelessWidget {
       this.labelStyle,
       this.onFieldSubmitted,
       this.hintStyle,
-      this.fillColor});
+      this.fillColor,
+      this.icon});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: context.bodyLarge,
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
       onTap: onTap,
@@ -98,17 +101,14 @@ class CustomTextField extends StatelessWidget {
         FocusManager.instance.primaryFocus!.unfocus();
       },
       decoration: InputDecoration(
+        icon: icon,
         labelStyle: labelStyle,
         contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 4.w),
         errorText: errorText,
         labelText: showLabel && controller != null ? hintText : null,
         hintText: hintText,
-        fillColor: fillColor,
+        fillColor: fillColor ?? AppColors.scaffoldBackgroundColor,
         hintStyle: hintStyle ?? context.hintText,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 14.r),
-          borderSide: const BorderSide(color: AppColors.secondaryColor),
-        ),
         prefixIcon: prefixIcon,
         prefix: prefixIcon == null
             ? const SizedBox(
@@ -119,14 +119,17 @@ class CustomTextField extends StatelessWidget {
         prefixIconColor: prefixIconColor,
         suffixIcon: suffixIcon,
         suffixIconColor: suffixIconColor,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
-          borderSide: const BorderSide(color: Colors.transparent),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
-          borderSide: const BorderSide(color: AppColors.secondaryColor),
-        ),
+        // border: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
+        //   borderSide: const BorderSide(color: Colors.transparent),
+        // ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(borderRadius ?? 14.r),
+        // ),
+        // focusedBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
+        //   borderSide: const BorderSide(color: AppColors.primaryColor),
+        // ),
       ),
     );
   }

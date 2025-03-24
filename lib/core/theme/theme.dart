@@ -11,10 +11,10 @@ class AppTheme {
     );
 
     return ThemeData.light().copyWith(
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primaryColor,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
       textTheme: TextTheme(
         bodyLarge: baseTextStyle.copyWith(fontSize: AppFonts.sizes.s20),

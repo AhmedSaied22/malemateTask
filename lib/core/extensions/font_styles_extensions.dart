@@ -22,13 +22,13 @@ extension FontExtensions on BuildContext {
 
   // Existing styles
   TextStyle get caption => textStyle(
-        size: AppFonts.sizes.s12,
+        size: AppFonts.sizes.s14,
         weight: AppFonts.weights.normal,
       );
 
   TextStyle get hintText => textStyle(
         size: AppFonts.sizes.s14,
-        weight: AppFonts.weights.light,
+        weight: AppFonts.weights.normal,
         color: AppColors.hintColor,
       );
 
@@ -56,5 +56,11 @@ extension FontExtensions on BuildContext {
         weight: AppFonts.weights.bold,
         letterSpacing: 1.3,
         fontFamily: AppFonts.primaryFont,
+      );
+
+  TextStyle get errorText => textStyle(
+        size: AppFonts.sizes.s14,
+        weight: AppFonts.weights.normal,
+        color: Colors.red,
       );
 }

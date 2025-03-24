@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mealmate/core/extensions/font_styles_extensions.dart';
 import 'package:mealmate/core/extensions/media_query_extensions.dart';
+import 'package:mealmate/core/ui/app_colors.dart';
 import 'package:mealmate/core/ui/app_styles_fonts.dart';
 
 class CalorieCircle extends StatelessWidget {
@@ -16,14 +17,13 @@ class CalorieCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Calculate progress (0.0 to 1.0)
     final double progress = (calories / goal).clamp(0.0, 1.0);
 
     return Container(
       padding: EdgeInsets.all(2.w),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.white,
+        color: AppColors.scaffoldBackgroundColor,
       ),
       child: Center(
         child: SizedBox(
