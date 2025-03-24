@@ -9,5 +9,5 @@ class AppColors {
   static const Color primaryTextColor = Colors.black;
   static const Color secondaryTextColor = Color(0xff1f992c);
   static Color hintColor =
-      const Color.fromARGB(255, 224, 224, 224).withValues(alpha: 0.5);
+      const Color.fromARGB(255, 224, 224, 224).withValues(alpha: 0.7);
 }

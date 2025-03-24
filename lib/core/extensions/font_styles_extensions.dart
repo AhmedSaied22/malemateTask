@@ -23,7 +23,7 @@ extension FontExtensions on BuildContext {
   // Existing styles
   TextStyle get caption => textStyle(
         size: AppFonts.sizes.s12,
-        weight: AppFonts.weights.light,
+        weight: AppFonts.weights.normal,
       );
 
   TextStyle get hintText => textStyle(
@@ -50,5 +50,11 @@ extension FontExtensions on BuildContext {
         weight: AppFonts.weights.normal,
         letterSpacing: 1.3,
         fontFamily: AppFonts.secondaryFont,
+      );
+  TextStyle get title => textStyle(
+        size: AppFonts.sizes.s24,
+        weight: AppFonts.weights.bold,
+        letterSpacing: 1.3,
+        fontFamily: AppFonts.primaryFont,
       );
 }
