@@ -27,15 +27,18 @@ class DayFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: days.map((day) {
-          return DayItem(
-            day: day,
-            isSelected: _isSelected(day),
-            onTap: () => onDaySelected(day),
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: days.map((day) {
+            return DayItem(
+              day: day,
+              isSelected: _isSelected(day),
+              onTap: () => onDaySelected(day),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

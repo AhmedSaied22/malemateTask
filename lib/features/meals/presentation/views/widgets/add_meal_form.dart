@@ -146,6 +146,7 @@ class _AddMealFormState extends State<AddMealForm> {
         padding: EdgeInsets.all(24.w),
         child: Form(
           key: _formKey,
+          autovalidateMode: AutovalidateMode.always,
           child: Column(
             spacing: 30.h,
             children: [

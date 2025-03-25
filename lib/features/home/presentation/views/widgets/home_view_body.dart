@@ -107,7 +107,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     child: CalorieCircle(calories: totalCalories, goal: 2000)),
               ],
             ),
-            SizedBox(height: context.screenHeight * 0.1),
+            SizedBox(height: context.screenHeight * 0.12),
             Expanded(
                 child: MealsListView(
               filterType: _filterType,
