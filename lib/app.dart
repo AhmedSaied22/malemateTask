@@ -7,7 +7,7 @@ import 'package:mealmate/core/routes/routes_name.dart';
 import 'package:mealmate/core/theme/theme.dart';
 import 'package:mealmate/features/meals/data/model/meal_model.dart';
 import 'package:mealmate/features/meals/data/repo/meal_repo_impl.dart';
-import 'package:mealmate/features/meals/presentation/manager/cubit/meal_cubit.dart';
+import 'package:mealmate/features/meals/presentation/manager/meal%20cubit/meal_cubit.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

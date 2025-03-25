@@ -3,36 +3,57 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mealmate/core/extensions/font_styles_extensions.dart';
 import 'package:mealmate/core/extensions/media_query_extensions.dart';
 import 'package:mealmate/core/ui/app_colors.dart';
+import 'package:mealmate/core/utils/enums.dart';
+import 'package:mealmate/features/home/presentation/views/widgets/calorie_filter_dialog.dart';
 import 'package:mealmate/features/home/presentation/views/widgets/day_filter.dart';
 
-class HomeViewGreenContainer extends StatefulWidget {
+class HomeViewGreenContainer extends StatelessWidget {
+  final List<DateTime?> days;
+  final FilterType filterType;
+  final DateTime? selectedDate;
+  final ValueChanged<DateTime?> onDaySelected;
+  final ValueChanged<DateTime> onDatePicked;
+  final RangeValues calorieRange;
+  final ValueChanged<RangeValues> onCalorieFilter;
+
   const HomeViewGreenContainer({
     super.key,
+    required this.days,
+    required this.filterType,
+    required this.selectedDate,
+    required this.onDaySelected,
+    required this.onDatePicked,
+    required this.onCalorieFilter,
+    required this.calorieRange,
   });
 
-  @override
-  State<HomeViewGreenContainer> createState() => _HomeViewGreenContainerState();
-}
-
-class _HomeViewGreenContainerState extends State<HomeViewGreenContainer> {
-  late List<DateTime> _days;
-  late DateTime _selectedDay;
-
-  @override
-  void initState() {
-    super.initState();
-    _days = List.generate(
-      5,
-      (index) => DateTime.now().add(Duration(days: index)),
+  Future<void> _selectDate(BuildContext context) async {
+    final pickedDate = await showDatePicker(
+      context: context,
+      initialDate: selectedDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
     );
-    _selectedDay = _days[0];
+    if (pickedDate != null) onDatePicked(pickedDate);
   }
 
-  void _onDaySelected(DateTime day) {
-    setState(() {
-      _selectedDay = day;
-    });
+  Future<void> _showCalorieFilter(BuildContext context) async {
+    final result = await showDialog<RangeValues>(
+      context: context,
+      builder: (context) => CalorieFilterDialog(
+        initialMin: _currentMinCalories,
+        initialMax: _currentMaxCalories,
+        onFilterApplied: onCalorieFilter,
+      ),
+    );
   }
+
+  int get _currentMinCalories =>
+      (filterType == FilterType.calorieRange) ? calorieRange.start.round() : 25;
+
+  int get _currentMaxCalories => (filterType == FilterType.calorieRange)
+      ? calorieRange.end.round()
+      : 10000;
 
   @override
   Widget build(BuildContext context) {
@@ -49,27 +70,33 @@ class _HomeViewGreenContainerState extends State<HomeViewGreenContainer> {
         spacing: 12.h,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.filter_list,
-                    size: 34,
-                    color: Colors.white,
-                  )),
-              const Spacer(),
+                onPressed: () => _showCalorieFilter(context),
+                icon: Icon(
+                  Icons.filter_list,
+                  size: 34,
+                  color: filterType == FilterType.calorieRange
+                      ? Colors.amber
+                      : Colors.white,
+                ),
+              ),
               Text(
                 "MealMate",
                 style: context.title.copyWith(color: Colors.white),
               ),
-              const Spacer(),
+              IconButton(
+                onPressed: () => _selectDate(context),
+                icon: const Icon(Icons.calendar_today, color: Colors.white),
+              ),
             ],
           ),
           DayFilter(
-            days: _days,
-            selectedDay: _selectedDay,
-            onDaySelected: _onDaySelected,
+            days: days,
+            filterType: filterType,
+            selectedDate: selectedDate,
+            onDaySelected: onDaySelected,
           ),
         ],
       ),

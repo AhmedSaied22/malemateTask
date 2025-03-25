@@ -9,7 +9,7 @@ import 'package:mealmate/core/ui/app_colors.dart';
 import 'package:mealmate/core/ui/app_styles_fonts.dart';
 import 'package:mealmate/core/utils/app_strings.dart';
 import 'package:mealmate/features/meals/data/model/meal_model.dart';
-import 'package:mealmate/features/meals/presentation/manager/cubit/meal_cubit.dart';
+import 'package:mealmate/features/meals/presentation/manager/meal%20cubit/meal_cubit.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({super.key, required this.mealModel});

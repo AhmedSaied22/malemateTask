@@ -9,6 +9,7 @@ class AppColors {
   // text colors
   static const Color primaryTextColor = Colors.black;
   static const Color secondaryTextColor = Color.fromARGB(255, 22, 119, 32);
+  static const Color dateTextColor = Color.fromARGB(255, 93, 228, 163);
   static Color hintColor =
       const Color.fromARGB(255, 151, 149, 149).withValues(alpha: 0.7);
 }

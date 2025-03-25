@@ -1,33 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:mealmate/core/utils/enums.dart';
 import 'package:mealmate/features/home/presentation/views/widgets/day_item.dart';
 
 class DayFilter extends StatelessWidget {
-  final List<DateTime> days;
-  final DateTime selectedDay;
-  final ValueChanged<DateTime> onDaySelected;
+  final List<DateTime?> days;
+  final FilterType filterType;
+  final DateTime? selectedDate;
+  final ValueChanged<DateTime?> onDaySelected;
 
   const DayFilter({
     super.key,
     required this.days,
-    required this.selectedDay,
+    required this.filterType,
+    required this.selectedDate,
     required this.onDaySelected,
   });
 
+  bool _isSelected(DateTime? day) {
+    if (day == null) return filterType == FilterType.all;
+    return filterType == FilterType.day &&
+        selectedDate != null &&
+        day.isAtSameMomentAs(selectedDate!);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: days.map((day) {
-        final bool isSelected = day.day == selectedDay.day &&
-            day.month == selectedDay.month &&
-            day.year == selectedDay.year;
-
-        return DayItem(
-          day: day,
-          isSelected: isSelected,
-          onTap: () => onDaySelected(day),
-        );
-      }).toList(),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: days.map((day) {
+          return DayItem(
+            day: day,
+            isSelected: _isSelected(day),
+            onTap: () => onDaySelected(day),
+          );
+        }).toList(),
+      ),
     );
   }
 }

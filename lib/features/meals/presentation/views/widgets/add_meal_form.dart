@@ -13,7 +13,7 @@ import 'package:mealmate/core/ui/widgets/custom_snack_bar.dart';
 import 'package:mealmate/core/ui/widgets/custom_text_field.dart';
 import 'package:mealmate/core/utils/app_strings.dart';
 import 'package:mealmate/features/meals/data/model/meal_model.dart';
-import 'package:mealmate/features/meals/presentation/manager/cubit/meal_cubit.dart';
+import 'package:mealmate/features/meals/presentation/manager/meal%20cubit/meal_cubit.dart';
 import 'package:uuid/uuid.dart';
 
 class AddMealForm extends StatefulWidget {
